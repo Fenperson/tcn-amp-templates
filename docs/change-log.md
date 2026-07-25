@@ -15,3 +15,7 @@
   `0265f569ff61fb9c4df3f50b34c796caf85eab89` on `main`.
 - Live rollout and canary evidence remain in the private TCN operating record;
   repository acceptance is still pending.
+- Added the required root AMP repository `manifest.json`. ADS can clone a
+  repository without indexing its applications when this file is absent, so
+  validation now fails closed if the manifest or its canonical identity/type
+  fields are missing.

@@ -12,6 +12,8 @@
 ## ADS fetch
 
 - Repository fetch succeeds for the exact published revision.
+- Root `manifest.json` parses, has a unique non-empty identifier, and declares
+  `repotype` as `AppTemplates`.
 - Angels Fall First and The Riftbreaker appear as distinct named templates.
 - AFF shows version 5 and its unique application identifier.
 

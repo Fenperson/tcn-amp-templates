@@ -3,6 +3,10 @@
 Version-controlled custom AMP Generic Module templates maintained for The
 Cantina Network.
 
+The root `manifest.json` identifies this repository to ADS as an
+`AppTemplates` source. ADS may clone a configuration repository but omit all
+of its applications when this manifest is absent.
+
 ## Templates
 
 ### Angels Fall First
@@ -47,8 +51,9 @@ Run:
 pwsh -NoProfile -File tools/validate-templates.ps1
 ```
 
-The validator checks JSON syntax, referenced files, unique application
-identifiers, positive template versions, and required launch fields.
+The validator checks the required repository manifest, JSON syntax, referenced
+files, unique application identifiers, positive template versions, and
+required launch fields.
 
 ## Safety
 
