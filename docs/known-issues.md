@@ -19,6 +19,11 @@ the compatibility instance as rollback until the new instance passes managed
 update, process and port readback, stop/start persistence, browser discovery,
 and a real external-client join.
 
+## AFF repository canary remains pending
+
+Complete the repository-backed update, lifecycle, browser-discovery, and
+external-client acceptance checks before replacing a working deployment.
+
 ## Steam client-ticket authentication under Wine
 
 The tested AFF Wine route requires client-ticket authentication disabled.

@@ -15,6 +15,8 @@
 2. Add `Fenperson/tcn-amp-templates:main` to ADS configuration repositories.
 3. Fetch the repository and confirm both named templates appear.
 4. Do not press a module-upgrade control on a compatibility instance.
+5. Use an approved authenticated operator session. Do not weaken
+   authentication controls solely to automate deployment.
 
 ## Canary rollout
 
