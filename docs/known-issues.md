@@ -17,21 +17,23 @@ commit. Never patch template behavior directly on `amp`.
 
 ## Angels Fall First compatibility-instance lineage
 
-The current live deployment originated as
+The legacy deployment lineage originated as
 `ChivalryMedievalWarfare01`. An AMP template/module refresh can therefore load
 CubeCoders' upstream Chivalry definition and restore obsolete
 `chivalrymw/220070` launch paths.
 
-Keep the compatibility instance as rollback until the repository-created
-canary passes browser discovery and a real external-client join. Managed
-update, pristine seeding, process and game/query-port readback, and stop/start
-persistence have passed.
+Do not assume that compatibility instance remains available as rollback;
+current instance presence is recorded privately. Any recreated instance must
+come from this repository's named AFF template and pass browser discovery plus
+a real external-client join before production use. Managed update, pristine
+seeding, process and game/query-port readback, and stop/start persistence have
+previously passed.
 
 ## AFF external-client acceptance remains pending
 
-The repository-backed canary passed first install and lifecycle acceptance.
-Complete browser-discovery and external-client checks before replacing the
-working deployment.
+The repository-backed canary previously passed first install and lifecycle
+acceptance. Complete browser-discovery and external-client checks against any
+retained or recreated canary before production use.
 
 ## Steam client-ticket authentication under Wine
 

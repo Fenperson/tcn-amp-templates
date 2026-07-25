@@ -12,6 +12,9 @@
   deployable root files and flattening collisions, and validate a simulated
   flat artifact. Added a fail-closed artifact builder that only writes to a new
   output path.
+- Removed stale public claims that a compatibility AFF instance remains
+  available. Exact live instance and recovery state remains in the private TCN
+  operating record.
 - Established the existing TCN AMP template directory as a standalone,
   publishable configuration repository.
 - Added a deterministic validation command, project memory, deployment
