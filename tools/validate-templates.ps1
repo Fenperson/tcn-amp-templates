@@ -5,6 +5,53 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
+$repoManifestPath = Join-Path $repoRoot 'manifest.json'
+
+if (-not (Test-Path -LiteralPath $repoManifestPath -PathType Leaf)) {
+    throw 'Repository root is missing required AMP manifest.json.'
+}
+
+$repoManifest = Get-Content -LiteralPath $repoManifestPath -Raw |
+    ConvertFrom-Json -Depth 20
+
+foreach ($requiredProperty in @(
+    'id',
+    'authors',
+    'origin',
+    'url',
+    'imagefile',
+    'prefix',
+    'repotype'
+)) {
+    if ($requiredProperty -notin $repoManifest.PSObject.Properties.Name) {
+        throw "manifest.json: missing required property $requiredProperty"
+    }
+}
+
+$repoId = [guid]::Empty
+if (-not [guid]::TryParse($repoManifest.id, [ref]$repoId) -or
+    $repoId -eq [guid]::Empty) {
+    throw 'manifest.json: id must be a non-empty GUID.'
+}
+
+if ($repoManifest.authors.Count -lt 1 -or
+    @($repoManifest.authors |
+        Where-Object { [string]::IsNullOrWhiteSpace($_) }).Count -gt 0) {
+    throw 'manifest.json: authors must contain at least one non-empty name.'
+}
+
+if ($repoManifest.origin -ne
+    'https://github.com/Fenperson/tcn-amp-templates.git') {
+    throw 'manifest.json: origin must identify the canonical Git repository.'
+}
+if ($repoManifest.url -ne
+    'https://github.com/Fenperson/tcn-amp-templates') {
+    throw 'manifest.json: url must identify the public repository page.'
+}
+if ($repoManifest.repotype -ne 'AppTemplates') {
+    throw 'manifest.json: repotype must be AppTemplates.'
+}
+
 $templateFiles = Get-ChildItem -LiteralPath $repoRoot -Filter '*.kvp' -File |
     Sort-Object Name
 
@@ -118,4 +165,4 @@ foreach ($sourceFile in $sourceFiles) {
     }
 }
 
-Write-Output "Validated $($templateFiles.Count) AMP templates."
+Write-Output "Validated AMP repository manifest and $($templateFiles.Count) templates."
