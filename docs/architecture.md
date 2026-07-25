@@ -1,7 +1,11 @@
 # Architecture
 
 ```text
-GitHub main branch
+GitHub main branch (canonical source)
+    -> templates/angels-fall-first/
+    -> templates/riftbreaker/
+        -> validated flattening
+            -> GitHub amp branch (generated artifact)
     -> ADS configuration-repository fetch
         -> named Generic Module template
             -> AMP instance-local GenericModule.kvp and manifests
@@ -9,14 +13,18 @@ GitHub main branch
                     -> game process
 ```
 
-GitHub is the source of truth for template definitions. ADS fetches the
-repository and copies the selected template into each instance. Game binaries,
-Wine prefixes, effective runtime configuration, logs, and backups remain on
-AMP01 and never belong in this repository.
+The per-template directories on `main` are the source of truth. Each directory
+owns one KVP and every file referenced by that template. The `amp` branch is a
+generated, intentionally flat deployment artifact because ADS only indexes
+top-level KVP files. ADS fetches `amp` and copies the selected template into
+each instance.
+
+Game binaries, Wine prefixes, effective runtime configuration, logs, and
+backups remain on AMP01 and never belong in this repository.
 
 Root `manifest.json` gives the repository a unique identity and declares its
-`AppTemplates` type. It is required for ADS to index the KVP files into the
-instance-creation application list.
+`AppTemplates` type. The build copies it to the deployment artifact, where ADS
+requires it to index the KVP files into the instance-creation application list.
 
 `Meta.AppConfigId` identifies a template independently from its display name.
 `Meta.ConfigVersion` orders intentional releases of that identity. A new AFF

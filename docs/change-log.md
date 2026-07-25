@@ -2,6 +2,16 @@
 
 ## 2026-07-25
 
+- Separated the canonical `main` source into
+  `templates/angels-fall-first/` and `templates/riftbreaker/`, each with an
+  application-specific README and all files owned by that template.
+- Established `amp` as the generated flat deployment branch required by ADS.
+  ADS switched from `:main` to `:amp`, fetched the known-good artifact, and
+  continued to expose exactly one entry for each application.
+- Reworked validation to enforce template-directory ownership, reject
+  deployable root files and flattening collisions, and validate a simulated
+  flat artifact. Added a fail-closed artifact builder that only writes to a new
+  output path.
 - Established the existing TCN AMP template directory as a standalone,
   publishable configuration repository.
 - Added a deterministic validation command, project memory, deployment

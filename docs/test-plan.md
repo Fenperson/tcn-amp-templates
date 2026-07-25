@@ -2,16 +2,21 @@
 
 ## Static source
 
+- Exactly one KVP exists in each `templates/<name>/` directory, and the
+  directory and KVP names match.
 - KVP syntax is parseable.
-- Referenced JSON files exist and parse.
+- Referenced JSON files exist beside their owning KVP and parse.
 - Application identifiers and config roots are unique.
 - Template versions are positive integers.
 - Required launch fields are present.
 - No credentials or runtime state are committed.
+- Canonical runtime filenames do not collide when flattened.
+- No deployable template files exist at `main` repository root.
+- A generated flat artifact passes the same KVP/reference checks.
 
 ## ADS fetch
 
-- Repository fetch succeeds for the exact published revision.
+- Repository fetch succeeds from the exact published `amp` revision.
 - Root `manifest.json` parses, has a unique non-empty identifier, and declares
   `repotype` as `AppTemplates`.
 - Angels Fall First and The Riftbreaker appear as distinct named templates.
