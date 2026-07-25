@@ -1,0 +1,12 @@
+[
+  {
+    "ConfigFile": "AFFGame/Config/AMP/PCServer-AFFGame.ini",
+    "AutoMap": true,
+    "ConfigType": "ini"
+  },
+  {
+    "ConfigFile": "AFFGame/Config/AMP/PCServer-AFFEngine.ini",
+    "AutoMap": true,
+    "ConfigType": "ini"
+  }
+]

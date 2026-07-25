@@ -1,0 +1,28 @@
+[
+  {
+    "ConfigFile": "config.cfg",
+    "AutoMap": false,
+    "Importable": true,
+    "ConfigType": "kvp",
+    "ConfigFormat": "set {0} \"{1}\"",
+    "ConfigFormatRegex": "^\\s*set\\s+(?<key>[A-Za-z0-9_]+)\\s+\\\"(?<value>.*)\\\"\\s*$",
+    "Subsections": [
+      {
+        "Heading": "$root",
+        "SettingMappings": {
+          "server_name": "ServerName",
+          "server_password": "ServerPassword",
+          "server_rcon_password": "ServerRconPassword",
+          "server_max_players_count": "$MaxUsers",
+          "server_broadcast_enabled": "ServerBroadcastEnabled",
+          "server_pause_game_when_empty": "PauseWhenEmpty",
+          "disable_steam": "DisableSteam",
+          "mission": "Mission",
+          "difficulty": "Difficulty",
+          "app_mode": "AppMode",
+          "campaign": "Campaign"
+        }
+      }
+    ]
+  }
+]

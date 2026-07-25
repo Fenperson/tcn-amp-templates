@@ -1,0 +1,27 @@
+[
+  {
+    "UpdateStageName": "SteamCMD Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "SteamCMD",
+    "UpdateSourceData": "4114030",
+    "UpdateSourceArgs": "780310",
+    "ForceDownloadPlatform": "Windows",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Verify host-native runtime",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"root=\\\"{{$FullRootDir}}\\\"; test -x \\\"${root}riftbreaker-launch.sh\\\"; test -x \\\"${root}.proton10/proton\\\"; test -x \\\"${root}.steamrt-sniper/run\\\"\"",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Seed unattended server config",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"dir=\\\"{{$FullRootDir}}4114030\\\"; cfg=\\\"$dir/config.cfg\\\"; marker=\\\"$dir/.amp-riftbreaker-root-config-seeded\\\"; mkdir -p \\\"$dir\\\"; if [ ! -f \\\"$marker\\\" ]; then printf '%s\\n' 'set server_name \\\"The Cantina Network - Riftbreaker Test\\\"' 'set server_password \\\"\\\"' 'set server_rcon_password \\\"\\\"' 'set server_max_players_count \\\"4\\\"' 'set server_broadcast_enabled \\\"0\\\"' 'set server_pause_game_when_empty \\\"1\\\"' 'set app_mode \\\"server\\\"' 'set render_system \\\"dx11\\\"' 'set disable_steam \\\"1\\\"' 'set campaign \\\"open/open\\\"' 'set mission \\\"campaigns/open/headquarters_desert\\\"' 'set difficulty \\\"normal\\\"' > \\\"$cfg\\\"; touch \\\"$marker\\\"; fi\"",
+    "SkipOnFailure": false
+  }
+]
