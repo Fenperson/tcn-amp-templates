@@ -19,3 +19,9 @@
   repository without indexing its applications when this file is absent, so
   validation now fails closed if the manifest or its canonical identity/type
   fields are missing.
+- Merged the repository manifest as
+  `ecf14e3f2de02917b6ae7b2902a3d4a859d5afcd`. ADS indexed both named
+  applications and a repository-created AFF canary passed pristine install,
+  conditional configuration seeding, Wine initialization, settings/process
+  readback, game/query listeners, and stop-start-stop persistence. Public
+  browser discovery and a real external-client join remain pending.

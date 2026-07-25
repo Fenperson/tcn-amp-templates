@@ -31,6 +31,17 @@
 - Browser discovery and an external-client join pass before migration is
   declared complete.
 
+### 2026-07-25 result
+
+- Passed: distinct non-Chivalry instance creation, `wine-stable`, Steam app
+  `407480`, pristine managed update, conditional `Config/AMP` seeding, Wine
+  initialization, application start, safe process readback, game/query UDP
+  listeners, effective-setting persistence, and clean stop-start-stop.
+- Pending: public server-browser discovery, a real external-client join, and
+  separate confirmation of any adjacent authentication listener expected by
+  the final production port layout.
+- The compatibility instance remained running and recoverable throughout.
+
 ## Rollback
 
 - The former live instance remains unchanged and recoverable throughout the
