@@ -14,15 +14,16 @@ The current live deployment originated as
 CubeCoders' upstream Chivalry definition and restore obsolete
 `chivalrymw/220070` launch paths.
 
-Create a new instance from this repository's **Angels Fall First** entry. Keep
-the compatibility instance as rollback until the new instance passes managed
-update, process and port readback, stop/start persistence, browser discovery,
-and a real external-client join.
+Keep the compatibility instance as rollback until the repository-created
+canary passes browser discovery and a real external-client join. Managed
+update, pristine seeding, process and game/query-port readback, and stop/start
+persistence have passed.
 
-## AFF repository canary remains pending
+## AFF external-client acceptance remains pending
 
-Complete the repository-backed update, lifecycle, browser-discovery, and
-external-client acceptance checks before replacing a working deployment.
+The repository-backed canary passed first install and lifecycle acceptance.
+Complete browser-discovery and external-client checks before replacing the
+working deployment.
 
 ## Steam client-ticket authentication under Wine
 
