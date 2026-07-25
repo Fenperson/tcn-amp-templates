@@ -4,14 +4,19 @@ Last verified: 2026-07-25.
 
 ## Current state
 
-- Repository source contains custom AMP Generic Module templates for Angels
-  Fall First and The Riftbreaker.
+- `main` contains two independent canonical template source directories:
+  `templates/angels-fall-first/` and `templates/riftbreaker/`. Each includes a
+  human-facing README and all files owned by that template.
+- The `amp` branch is the flat ADS deployment artifact. ADS tracks
+  `Fenperson/tcn-amp-templates:amp`; deployable files are generated from
+  `main`, not edited on the artifact branch.
 - Angels Fall First template version 5 uses unique application identity
   `0135a343-dbe9-43ca-93a4-acf0cf01a844`, Steam dedicated-server app `407480`,
   and `cubecoders/ampbase:wine-stable`.
-- Static validation covers both template roots, referenced JSON manifests,
-  unique identifiers, versions, required launch fields, and common embedded
-  secret patterns.
+- Static validation covers directory ownership, both template roots,
+  referenced JSON manifests, unique identifiers, versions, required launch
+  fields, common embedded secret patterns, filename collisions, and the
+  generated flat artifact.
 - The public repository is
   `https://github.com/Fenperson/tcn-amp-templates`. Exact commit
   `0265f569ff61fb9c4df3f50b34c796caf85eab89` passed the local validator and is

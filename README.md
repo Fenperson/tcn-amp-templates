@@ -3,45 +3,50 @@
 Version-controlled custom AMP Generic Module templates maintained for The
 Cantina Network.
 
-The root `manifest.json` identifies this repository to ADS as an
-`AppTemplates` source. ADS may clone a configuration repository but omit all
-of its applications when this manifest is absent.
+`main` is organized for people: each application has one self-contained source
+directory under [`templates/`](templates/README.md). The generated `amp`
+branch is organized for ADS, which requires every deployable KVP and referenced
+file at repository root.
 
-## Templates
+```text
+templates/
+├── angels-fall-first/
+│   ├── README.md
+│   ├── angels-fall-first.kvp
+│   ├── angels-fall-firstconfig.json
+│   └── angels-fall-firstmetaconfig.json
+└── riftbreaker/
+    ├── README.md
+    ├── riftbreaker.kvp
+    ├── riftbreakerconfig.json
+    ├── riftbreakermetaconfig.json
+    ├── riftbreakerupdates.json
+    └── riftbreaker-launch.sh
+```
 
-### Angels Fall First
+## Template catalogue
 
-- Template root: `angels-fall-first.kvp`
-- Settings manifest: `angels-fall-firstconfig.json`
-- Metaconfig manifest: `angels-fall-firstmetaconfig.json`
-- Steam dedicated-server app: `407480`
-- Runtime: `cubecoders/ampbase:wine-stable`
+| Template | Source | Runtime |
+| --- | --- | --- |
+| Angels Fall First | [`templates/angels-fall-first/`](templates/angels-fall-first/) | Steam app `407480` in `cubecoders/ampbase:wine-stable` |
+| The Riftbreaker | [`templates/riftbreaker/`](templates/riftbreaker/) | Steam app `4114030`; host-native Linux compatibility launcher |
 
-Create new deployments from the **Angels Fall First** entry supplied by this
-repository. Do not convert or module-upgrade an upstream Chivalry instance:
-that can restore the upstream `chivalrymw/220070` launch definition.
-
-### The Riftbreaker
-
-- Template root: `riftbreaker.kvp`
-- Settings manifest: `riftbreakerconfig.json`
-- Metaconfig manifest: `riftbreakermetaconfig.json`
-- Update manifest: `riftbreakerupdates.json`
-- Launcher: `riftbreaker-launch.sh`
-
-Follow the TCN operating documentation before changing the live AMP01
-deployment.
+Create AFF deployments from this repository's **Angels Fall First** entry. Do
+not convert or module-upgrade an upstream Chivalry instance: that can restore
+the upstream `chivalrymw/220070` launch definition.
 
 ## AMP registration
 
 Add the repository to ADS as:
 
 ```text
-Fenperson/tcn-amp-templates:main
+Fenperson/tcn-amp-templates:amp
 ```
 
-Fetch the repository, then create instances from its named templates. Keep
-start-on-boot disabled until the application-specific acceptance checks pass.
+The `amp` branch is a flat deployment artifact generated from `main`; it is not
+the editable source of truth. Fetch it, then create instances from its named
+templates. Keep start-on-boot disabled until the application-specific
+acceptance checks pass.
 
 ## Validation
 
@@ -52,8 +57,17 @@ pwsh -NoProfile -File tools/validate-templates.ps1
 ```
 
 The validator checks the required repository manifest, JSON syntax, referenced
-files, unique application identifiers, positive template versions, and
-required launch fields.
+files within each template directory, unique application identifiers, positive
+template versions, required launch fields, and whether the two directories can
+be flattened without collisions.
+
+Build a fresh flat artifact into a path that does not already exist:
+
+```powershell
+pwsh -NoProfile -File tools/build-amp-artifact.ps1 -OutputPath <new-path>
+```
+
+Publication and ADS procedures are in [`docs/deployment.md`](docs/deployment.md).
 
 ## Safety
 

@@ -5,8 +5,12 @@ Cantina Network.
 
 ## Scope
 
-- Keep every template root and all files referenced by it at repository root;
-  ADS fetches this layout directly.
+- `main` is the canonical, human-maintained source branch.
+- Keep each template root and every file it references together under
+  `templates/<template-name>/`.
+- The `amp` branch is a generated flat deployment artifact because ADS only
+  indexes top-level KVP files. Never edit template behavior directly on that
+  branch.
 - Treat `Meta.AppConfigId` as the stable application identity. Never reuse an
   upstream or another template's identifier.
 - Increase `Meta.ConfigVersion` for every published behavioral change.
@@ -22,7 +26,12 @@ Run before publication:
 pwsh -NoProfile -File tools/validate-templates.ps1
 ```
 
-For live rollout, fetch the repository in ADS, use a new canary instance,
+Generate the flat artifact into a new empty path with
+`tools/build-amp-artifact.ps1`, compare it with the proposed `amp` branch, and
+publish the exact validated bytes. ADS tracks
+`Fenperson/tcn-amp-templates:amp`, not `main`.
+
+For live rollout, fetch the `amp` branch in ADS, use a new canary instance,
 preserve the old instance as rollback, and verify managed update, process,
 ports, stop/start persistence, and application-specific acceptance before
 retiring anything.

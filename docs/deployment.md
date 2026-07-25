@@ -3,16 +3,25 @@
 ## Publish
 
 1. Run `pwsh -NoProfile -File tools/validate-templates.ps1`.
-2. Review the exact diff and template-version changes.
-3. Commit and push `main`.
-4. Record the validator result for the exact pushed commit. A hosted workflow
+2. Build into a new empty path with
+   `pwsh -NoProfile -File tools/build-amp-artifact.ps1 -OutputPath <new-path>`.
+3. Review the exact `main` diff and every template-version change.
+4. Compare the generated files byte-for-byte with the proposed `amp` branch.
+   The deployment branch must contain the root manifest, generated deployment
+   README, and flattened runtime files only.
+5. Commit and push `main`, then replace the `amp` branch contents with the exact
+   validated artifact in a separate reviewed commit.
+6. Record both immutable revisions and the validator result. A hosted workflow
    may be added later when GitHub authorization includes workflow scope.
+
+Never edit template behavior directly on `amp`; that would create a second
+source of truth.
 
 ## Register in ADS
 
 1. Preserve a scoped backup of the affected instance and effective game
    configuration.
-2. Add `Fenperson/tcn-amp-templates:main` to ADS configuration repositories.
+2. Add `Fenperson/tcn-amp-templates:amp` to ADS configuration repositories.
 3. Fetch the repository and confirm both named templates appear.
 4. Do not press a module-upgrade control on a compatibility instance.
 5. Use an approved authenticated operator session. Do not weaken

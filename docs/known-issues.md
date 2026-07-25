@@ -4,8 +4,16 @@
 
 The current GitHub CLI authorization can push repository content but cannot
 create or update `.github/workflows/` without an additional workflow scope.
-Run the checked-in validator locally for every publication until a separately
-reviewed authorization change permits hosted CI.
+Run the checked-in validator and artifact builder locally for every
+publication. Review and publish the generated `amp` branch separately until a
+separately reviewed authorization change permits hosted CI.
+
+## Deployment branch publication is manual
+
+`main` is the only editable source of truth; ADS consumes the generated flat
+`amp` branch. Until a reviewed hosted workflow exists, publication requires a
+local build, byte-for-byte artifact review, and a separate deployment-branch
+commit. Never patch template behavior directly on `amp`.
 
 ## Angels Fall First compatibility-instance lineage
 
