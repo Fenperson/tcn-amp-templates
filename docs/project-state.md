@@ -30,16 +30,17 @@ Last verified: 2026-07-25.
   effective-setting/process readback, game/query listener checks, and clean
   stop-start-stop persistence. Exact host details remain in the private TCN
   operating record.
-- The current live AFF service remains on compatibility instance
-  `ChivalryMedievalWarfare01` and is not to be retired until a
-  repository-created canary passes external browser/client acceptance.
+- The former compatibility deployment's
+  `ChivalryMedievalWarfare01` lineage remains relevant to recovery, but current
+  live-instance presence is authoritative only in the private TCN operating
+  record.
 - Public server-browser discovery and a real external-client join against the
   new canary remain pending. Exact live rollout state is retained in the
   private TCN operating record.
 
 ## Next safe step
 
-Keep the working compatibility instance unchanged. Start the repository-created
-canary only for a bounded public browser-discovery and real-client join test,
-then stop it again. Do not retire the compatibility instance until that final
-acceptance gate passes.
+Consult the private TCN operating record before any instance recovery or
+migration. If a repository-created canary is available or recreated, run a
+bounded public browser-discovery and real-client join test before treating it
+as a production replacement.
